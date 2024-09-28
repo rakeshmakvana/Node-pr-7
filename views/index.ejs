@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post Panel</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .navbar {
+      background-color: #2c3e50;
+      padding: 15px 30px;
+    }
+
+    .navbar-brand {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ecf0f1;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+      color: #1abc9c;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 16px;
+      color: #ecf0f1;
+      margin-right: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #1abc9c;
+    }
+
+    .navbar-nav .btn-custom {
+      background-color: #1abc9c;
+      color: #fff;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar-nav .btn-custom:hover {
+      background-color: #16a085;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card-img-top:hover {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .card-text {
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .btn-read-more {
+      background-color: #1abc9c;
+      color: #fff;
+      border-radius: 25px;
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-read-more:hover {
+      background-color: #16a085;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    h1::after {
+      content: '';
+      width: 100px;
+      height: 4px;
+      background-color: #1abc9c;
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">Blog Post Panel</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <% if (!user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Blogs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlogs">My Blogs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <li class="nav-item">
+              <a href="/add" class="btn btn-custom">Create Blog</a>
+            </li>
+            <% } %>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>All Blogs</h1>
+    <div class="row">
+      <% blogs.forEach(blog=> { %>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="../uploads/<%= blog.image %>" class="card-img-top" alt="Blog Image">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= blog.title %>
+              </h5>
+              <p class="card-text">
+                <%= blog.content.substring(0, 100) %>...
+              </p>
+              <a href="/" class="btn btn-read-more">Read More</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

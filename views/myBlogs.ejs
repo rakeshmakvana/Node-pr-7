@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post Panel - My Blogs</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #3c8dbc;
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-brand:hover,
+    .nav-link:hover {
+      color: #ecf0f1 !important;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #2c3e50;
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .btn-success {
+      background-color: #5cb85c;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-success:hover {
+      background-color: #4cae4c;
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #ffffff;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    .card-text {
+      font-size: 16px;
+      color: #7f8c8d;
+    }
+
+    .btn-warning {
+      background-color: #f39c12;
+      border: none;
+      color: #fff;
+      border-radius: 30px;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-warning:hover {
+      background-color: #e67e22;
+      box-shadow: 0 5px 15px rgba(231, 126, 34, 0.3);
+    }
+
+    .btn-danger {
+      background-color: #e74c3c;
+      border: none;
+      color: #fff;
+      border-radius: 30px;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-danger:hover {
+      background-color: #c0392b;
+      box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .card {
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/">Blog Post Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <% if (!user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Blogs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlogs">My Blogs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <% } %>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>My Blogs</h1>
+    <a href="/add" class="btn btn-success mb-4">Add New Blog</a>
+    <div class="row">
+      <% blogs.forEach(blog=> { %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="../uploads/<%= blog.image %>" class="card-img-top" alt="Blog Image">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= blog.title %>
+              </h5>
+              <p class="card-text">
+                <%= blog.content.substring(0, 100) %>...
+              </p>
+              <a href="/edit/<%= blog._id %>" class="btn btn-warning">Edit</a>
+              <form action="/delete/<%= blog._id %>" method="POST" class="d-inline">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

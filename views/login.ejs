@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Panel - Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-control {
+            border: 2px solid #1abc9c;
+            border-radius: 30px;
+            padding: 15px 20px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #16a085;
+            box-shadow: 0 0 8px rgba(26, 188, 156, 0.4);
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: #1abc9c;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #16a085;
+            box-shadow: 0 5px 15px rgba(22, 160, 133, 0.3);
+        }
+
+        .btn-primary:active {
+            background-color: #148f77;
+            box-shadow: none;
+        }
+
+        .alert-danger {
+            color: #e74c3c;
+            background-color: #f9ebea;
+            border-color: #f5b7b1;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 100%;
+                padding: 30px;
+                margin: 10px;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .separator {
+            width: 50px;
+            height: 3px;
+            background-color: #1abc9c;
+            margin: 20px auto;
+        }
+
+        p{
+            font-size: 16px;
+            font-weight: 600;
+            color: black;
+        }
+
+        p a:hover{
+            text-decoration: none;
+            color: #16a085;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Login</h1>
+        <div class="separator"></div>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p class="pt-3">I Have Not Account ? <a href="/register">Register</a></p>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
